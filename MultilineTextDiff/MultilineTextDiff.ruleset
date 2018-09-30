@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RuleSet Name="Rules for MultilineTextDiff" Description="Code analysis rules for MultilineTextDiff.csproj." ToolsVersion="14.0">
+  <IncludeAll Action="Warning" />
+  <Rules AnalyzerId="AsyncUsageAnalyzers" RuleNamespace="AsyncUsageAnalyzers">
+  </Rules>
+  <Rules AnalyzerId="CSharpEssentials" RuleNamespace="CSharpEssentials">
+    <!-- Rule Id="CSE0003" Action="None" / Consider using an expression-bodied member -->
+  </Rules>
+  <Rules AnalyzerId="CodeCracker.CSharp" RuleNamespace="CodeCracker.CSharp">
+    <Rule Id="CC0001" Action="None" /> <!-- use var -->
+    <Rule Id="CC0013" Action="None" /> <!-- use ternary operator -->
+    <Rule Id="CC0014" Action="None" /> <!-- use ternary operator -->
+    <Rule Id="CC0105" Action="None" /> <!-- use var -->
+  </Rules>
+  <Rules AnalyzerId="Microsoft.CodeAnalysis.CSharp" RuleNamespace="Microsoft.CodeAnalysis.CSharp">
+    <!-- Rule Id="CS0219" Action="None" / -->
+  </Rules>
+  <Rules AnalyzerId="Microsoft.CodeAnalysis.CSharp.EditorFeatures" RuleNamespace="Microsoft.CodeAnalysis.CSharp.EditorFeatures">
+    <!-- rules: IDE0032, IDE0032WithoutSuggestion -->
+  </Rules>
+  <Rules AnalyzerId="Microsoft.CodeAnalysis.CSharp.Features" RuleNamespace="Microsoft.CodeAnalysis.CSharp.Features">
+    <Rule Id="IDE0029" Action="Info" /> <!-- Null check can be simplified -->
+    <Rule Id="IDE0031" Action="Info" /> <!-- Null check can be simplified -->
+    <Rule Id="IDE0041" Action="Info" /> <!-- Null check can be simplified -->
+  </Rules>
+  <Rules AnalyzerId="Microsoft.CodeAnalysis.Features" RuleNamespace="Microsoft.CodeAnalysis.Features">
+    <!-- rules: IDE0010, IDE0010WithoutSuggestion, IDE0033, IDE0033WithoutSuggestion -->
+  </Rules>
+  <Rules AnalyzerId="Microsoft.Analyzers.ManagedCodeAnalysis" RuleNamespace="Microsoft.Rules.Managed">
+    <Rule Id="CA1303" Action="None" /> <!-- literal string as parameter; use resources -->
+    <Rule Id="CA2210" Action="None" /> <!-- sign with a strong name key -->
+  </Rules>
+  <Rules AnalyzerId="Roslynator.CSharp.Analyzers" RuleNamespace="Roslynator.CSharp.Analyzers">
+    <Rule Id="RCS1029" Action="None" /> <!-- Format binary operator on next line. -->
+    <Rule Id="RCS1032" Action="None" /> <!-- Remove redundant parentheses. -->
+  </Rules>
+  <Rules AnalyzerId="SonarAnalyzer.CSharp" RuleNamespace="SonarAnalyzer.CSharp">
+  </Rules>
+  <Rules AnalyzerId="StyleCop.Analyzers" RuleNamespace="StyleCop.Analyzers">
+  </Rules>
+</RuleSet>

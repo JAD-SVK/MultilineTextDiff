@@ -6,12 +6,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("FormattetTextDiff")]
+[assembly: AssemblyTitle("MultilineTextDiff")]
 [assembly: AssemblyDescription("Simple application to compare multi-line texts")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Atrip")]
-[assembly: AssemblyProduct("FormattetTextDiff")]
-[assembly: AssemblyCopyright("Copyright ©  2018")]
+[assembly: AssemblyProduct("MultilineTextDiff")]
+[assembly: AssemblyCopyright("Copyright © 2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -81,6 +81,16 @@ namespace Atrip.MultilineTextDiff
       set;
     } = 1;
 
+    [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+    public int WhiteSpacePreference
+    {
+      [DebuggerStepThrough]
+      get;
+
+      [DebuggerStepThrough]
+      set;
+    } = 2;
+
     public string Source
     {
       [DebuggerStepThrough]
@@ -101,12 +111,12 @@ namespace Atrip.MultilineTextDiff
 
     public List<EditOperation> GetEditSequence()
     {
-      return (ProcessEditSequence(this.Source, this.Target, this.InsertCost, this.RemoveCost, this.EditCost, this.CopyCost));
+      return (ProcessEditSequence(this.Source, this.Target, this.InsertCost, this.RemoveCost, this.EditCost, this.CopyCost, this.WhiteSpacePreference));
     }
 
     [SuppressMessage("Microsoft.Performance", "CA1814:PreferJaggedArraysOverMultidimensional", MessageId = "Body", Justification = "Better code readability")]
     private static List<EditOperation> ProcessEditSequence(string source, string target,
-      int insertCost, int removeCost, int editCost, int copyCost)
+      int insertCost, int removeCost, int editCost, int copyCost, int whiteSpacePreference)
     {
       // Forward: building score matrix
 
@@ -133,13 +143,22 @@ namespace Atrip.MultilineTextDiff
       // fill the cost and operation table
       for (int i = 1; i <= source.Length; i++)
       {
+        char sourceCharacter = source[i - 1];
         for (int j = 1; j <= target.Length; j++)
         {
           // here we choose the operation with the least cost
-          bool copy = (source[i - 1] == target[j - 1]);
+          char targetCharacter = target[j - 1];
+          bool copy = (sourceCharacter == targetCharacter);
           int insert = pathCost[i, j - 1] + insertCost;
           int remove = pathCost[i - 1, j] + removeCost;
           int edit = pathCost[i - 1, j - 1] + ((copy) ? (copyCost) : (editCost));
+
+          if ((!char.IsWhiteSpace(sourceCharacter)) && (!char.IsWhiteSpace(targetCharacter)) && !copy)
+          {
+            insert *= whiteSpacePreference;
+            remove *= whiteSpacePreference;
+            edit *= whiteSpacePreference;
+          }
 
           int min = Math.Min(Math.Min(insert, remove), edit);
 

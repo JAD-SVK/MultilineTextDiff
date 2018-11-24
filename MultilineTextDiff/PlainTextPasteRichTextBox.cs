@@ -40,8 +40,7 @@ namespace Atrip.Utils.GUI
       {
       case paste1_ok:
       case paste2_ok:
-        PasteText();
-        e.Handled = true;
+        e.Handled = PasteText();
         base.OnKeyDown(e);
         break;
 
@@ -58,8 +57,13 @@ namespace Atrip.Utils.GUI
     }
 
     [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Can not fall to the system")]
-    private void PasteText()
+    private bool PasteText()
     {
+      if (this.ReadOnly)
+      {
+        return (false);
+      }
+
       try
       {
         if (Clipboard.ContainsText())
@@ -71,6 +75,8 @@ namespace Atrip.Utils.GUI
       {
         Debug.WriteLine(ex.Message);
       }
+
+      return (true);
     }
   }
 }

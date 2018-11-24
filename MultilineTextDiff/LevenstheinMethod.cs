@@ -89,7 +89,7 @@ namespace Atrip.MultilineTextDiff
 
       [DebuggerStepThrough]
       set;
-    } = 2;
+    } = 1;
 
     public string Source
     {
@@ -153,11 +153,11 @@ namespace Atrip.MultilineTextDiff
           int remove = pathCost[i - 1, j] + removeCost;
           int edit = pathCost[i - 1, j - 1] + ((copy) ? (copyCost) : (editCost));
 
-          if ((!char.IsWhiteSpace(sourceCharacter)) && (!char.IsWhiteSpace(targetCharacter)) && !copy)
+          if (char.IsWhiteSpace(sourceCharacter) && char.IsWhiteSpace(targetCharacter) && !copy)
           {
-            insert *= whiteSpacePreference;
-            remove *= whiteSpacePreference;
-            edit *= whiteSpacePreference;
+            insert -= whiteSpacePreference;
+            remove -= whiteSpacePreference;
+            edit -= whiteSpacePreference;
           }
 
           int min = Math.Min(Math.Min(insert, remove), edit);
